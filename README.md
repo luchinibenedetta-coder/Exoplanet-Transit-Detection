@@ -35,15 +35,23 @@ flowchart LR
 
 ## Scientific Background
 **Transit method.** When a planet passes in front of its star, the observer flux drops. The fractional drop is the transit depth. To first order the planet is a dark disk in front of a uniformly bright stellar disc, so the depthis the ratio of the two areas:
-$$\delta=\frac{\Delta F}{F}\approx\left(\frac{R_p}{R_\star}\right)^2$$
+```
+δ = ΔF / F ≈ (Rp / R★)²
+```
 **Limb darkening.**The stellar disc is brighter at the centre than at the edge. With a linear law the intensity is l(mu)=1-u(1-mu), where mu is the cosine of the angle from the disc centre. The mean intensity over the disc is 1-u/3. A planet crossing near the centre blocks a region brighter than the average, so the plain formula above overestimates the radius ratio. For a central transit a better first estimate is:
-$$\frac{R_p}{R_\star}\approx\sqrt{\delta\left(1-\frac{u}{3}\right)}$$
+```
+Rp / R★ ≈ √( δ · (1 − u/3) )
+```
 Limb darkening also rounds the bottom of the transit, which is clearly visible in the data.
 **Transit geometry.** For a circular orbitand a central transit the duration is related to the orbit size by:
-$$T\approx\frac{P}{\pi}\,\frac{R_\star}{a}\left(1+\frac{R_p}{R_\star}\right)$$
+```
+T ≈ (P / π) · (R★ / a) · (1 + Rp / R★)
+```
 The impact parameter is b=(a/R*)cos i, where i is the orbital inclination.
 **Stellar density from the transit.** For a circular orbit, Kepler's third law links the orbit size in the stellar radii to the mean density of the star, with no need to know the stellar radius:
-$$\rho_\star=\frac{3\pi}{GP^2}\left(\frac{a}{R_\star}\right)^3$$
+```
+ρ★ = 3π / (G · P²) · (a / R★)³
+```
 **Box Least Squares (BLS).** For each trial period the light curve is folded and a box-shaped dip is fitted. The period that gives the best box is the best candidate. BLS suits transit because they are short, flat-bottomed drips repeating at a constant period.
 
 
