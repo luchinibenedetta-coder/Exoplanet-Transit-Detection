@@ -251,4 +251,4 @@ Folded light curve (top) with the fitted model in red, and residuals (bottom).
 - Odd-even depth comparison and a search for a secondary eclipse, as checks on the planetary nature of the signal.
 - Compare with a flattened light curve.
 - Search for additional signals in the residuals.
-- Combine with the stellar radius from the literature to convert Rp/R* into physical units.
+- Combine with the stellar radius from the literature to convert Rp/R★ into physical units.
