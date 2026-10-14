@@ -9,7 +9,7 @@ The transit signal of Kepler-6b (KIC 10874614) is detected in Kepler Quarter 2 d
 |---|---|---|
 |Orbital period|3.23452 d|3.2347 d|
 |Transit depth|0.01055|0.0106|
-|Rp/R*|0.0954±0.0013|0.093
+|Rp/R★|0.0954±0.0013|0.093
 
 ![Transit fit](transit.png)
 
@@ -17,7 +17,7 @@ The transit signal of Kepler-6b (KIC 10874614) is detected in Kepler Quarter 2 d
 ## Objective
 Detect a periodic transit signal in raw survey data, measure its properties and quantiry how well the analysis reproduces known values, following the path:
 observational data --> cleaning -->detection -->measurement -->physical interpretation --> comparison with the literature
-The reference values (period 3.2347 d, depth 1.06%, Rp/R* 0.093) are used **only** in the final comparison, never as an imput. The period search covers 0.5-20 days with no hint of the expected value.
+The reference values (period 3.2347 d, depth 1.06%, Rp/R★ 0.093) are used **only** in the final comparison, never as an imput. The period search covers 0.5-20 days with no hint of the expected value.
 Kepler-6b is a good test case for a first end-to-end pipeline: its transit is deep (about 1%) and repeats every 3.2 days, so a quarter of data contains about 25 transits, and its paramenters are well known, which allows an honest check of the results.
 
 
@@ -47,7 +47,7 @@ Limb darkening also rounds the bottom of the transit, which is clearly visible i
 ```
 T ≈ (P / π) · (R★ / a) · (1 + Rp / R★)
 ```
-The impact parameter is b=(a/R*)cos i, where i is the orbital inclination.
+The impact parameter is b=(a/R★)cos i, where i is the orbital inclination.
 **Stellar density from the transit.** For a circular orbit, Kepler's third law links the orbit size in the stellar radii to the mean density of the star, with no need to know the stellar radius:
 ```
 ρ★ = 3π / (G · P²) · (a / R★)³
@@ -102,7 +102,7 @@ Flags are stored as sums of powers of two, so each value was decoded bit by bit.
 |Clip outliners on the upper side only|Simmetric sigma clipping|Symmetric clipping would remove points at the bottom of the transit|
 |No detrending (flatten)|Flatten before the search|The baseline is already flat and detrending can distort the transit. It is left as a future comparison|
 |Wide BLS, then narrow BLS| One fine BLS over the full range|A step of 5e-6 d over 0.5-20 d is about 3.9 million trial periods. Two stages give the same precision at a fraction of the cost|
-|Fit the limb-darkening coefficient|Fix it at a typical value|It is unknown, and fixing it changes Rp/R* by about 2% (see the sensitivity table)|
+|Fit the limb-darkening coefficient|Fix it at a typical value|It is unknown, and fixing it changes Rp/R★ by about 2% (see the sensitivity table)|
 |Supersample each exposure|Compute the model at one instant|A 30-minute exposure is about 14% of the transit duration, so it visibly smears ingress and egress|
 | Fit only within 0.3 d of the transit centre | Fit all phases | Leaves out the instrumental ramp after the transit, while still anchoring the baseline |
 
@@ -115,7 +115,7 @@ Flags are stored as sums of powers of two, so each value was decoded bit by bit.
 
 ## Measurement
 **Depth.** The median flux out of transit minus the median flux at the bottom of the transit (|phase|<0.03 d, 69 points) gives a depth of 0.010501, and a first estiate sqrt(depth)=0.1025.
-**Duration.** The phase range where the flux is below 0.999 runs from -0.0764 to +0.0803 d, so the observed width is about 0.157 d (3.8 hours). For a central transit this gives a/R* of about 7.2, used as the starting point for the fit.
+**Duration.** The phase range where the flux is below 0.999 runs from -0.0764 to +0.0803 d, so the observed width is about 0.157 d (3.8 hours). For a central transit this gives a/R★ of about 7.2, used as the starting point for the fit.
 
 ## Transit Model
 A batman model with linear limb darkening and a circular orbit is fitted to the folded data with scipy curve_fit.
@@ -123,8 +123,8 @@ A batman model with linear limb darkening and a circular orbit is fitted to the 
 |Parameter|Starting value|Bounds|
 |---|---|---|
 |Mid-transit time offset [d] |0| -0.02 to 0.02|
-|Rp/R*| 0.0917 (from the measured depth)|0.05 to 0.15|
-|a/R*|7|3 to 15|
+|Rp/R★| 0.0917 (from the measured depth)|0.05 to 0.15|
+|a/R★|7|3 to 15|
 |Impact parameter b|0.1|0 to 0.9|
 |Limb darkening u|0.6|0 to 1|
 
@@ -138,21 +138,21 @@ The orbital period is fixed to the refined BLS value. Each Kepler point is an av
 |---|---|---|---|
 |Orbital period|3.23452 d|3.2347 d|-0.00018 d(-0.006%)|
 |Transit depth|0.01055|0.0106|-0.5%|
-|Rp/R*|0.0954±0.0013|0.093|+2.6% (about 1.9 sigma)|
+|Rp/R★|0.0954±0.0013|0.093|+2.6% (about 1.9 sigma)|
 
-The period and the depth agree with the reference to better than 1%. Rp/R* agrees within about 2 sigma. The reference values have their own uncertainties, which are not included in this comparison.
+The period and the depth agree with the reference to better than 1%. Rp/R★ agrees within about 2 sigma. The reference values have their own uncertainties, which are not included in this comparison.
 
 ### Fitted model parameters
 
 |Parameter|Value|
 |---|---|
 |Mid-transit time offset|-0.0004±0.0001 d|
-|Rp/R*|0.0954±0.0013|
-|a/R*|7.50±0.44|
+|Rp/R★|0.0954±0.0013|
+|a/R★|7.50±0.44|
 |Impact parameter b|0.25±0.23|
 |Limb darkening u (linear)|0.461±0.019|
 
-The impact parameter is poorly constrained: the data cannot distinguish a central transit from a slightly off-centre one. It is correlated with a/R*, u and Rp/R*.
+The impact parameter is poorly constrained: the data cannot distinguish a central transit from a slightly off-centre one. It is correlated with a/R★, u and Rp/R★.
 
 ### Derived quantities
 
@@ -161,15 +161,15 @@ The impact parameter is poorly constrained: the data cannot distinguish a centra
 |Transition duration T14 (first to last contract)|0.147 d (3.5h)|from the fitted model|
 |Full-depth duration T23|about 2.9 h|from the fitted model|
 |Orbital inclination|about 88 degrees|between about86.3 and 90 degrees for b within 1 sigma|
-|Mean stellar density|760 kg/m^3, or 0.54±0.09 solar|from a a/R* and the period, circular orbit|
+|Mean stellar density|760 kg/m^3, or 0.54±0.09 solar|from a a/R★ and the period, circular orbit|
 |Detection significance|depth/statistical error of about 320|conservative estimate|
 
 The width measured at the 0.999 level (0.157 d) is larger than the model T14 (0.147 d). This is consistent with each point being a 30-minute average, which widens ingress and egress in the data. This was not tested separately.
-The stellar density depends on the circular-orbit assumption, and its uncertainty propagates the error on a/R*, ignoring the correlation with b. For scale: for a star with the radius of the Sun, Rp/R*=0.0954 corresponds to about 0.93 Jupiter radii. The actual planet radius requires an indipendent value of the stellar radius, which is not used here.
+The stellar density depends on the circular-orbit assumption, and its uncertainty propagates the error on a/R★, ignoring the correlation with b. For scale: for a star with the radius of the Sun, Rp/R★=0.0954 corresponds to about 0.93 Jupiter radii. The actual planet radius requires an indipendent value of the stellar radius, which is not used here.
 
 ### How the radius ratio improves with the physics
 
-|Estimate|Rp/R*|
+|Estimate|Rp/R★|
 |---|---|
 |sqrt(depth), no limb darkening|0.1025|
 |sqrt(depth(1-u/3)), u=0.6|o.0917|
@@ -180,20 +180,20 @@ The plain estimate is about 10% too high because it ignores limb darkening. Incl
 
 ## Uncertainty Budget
 
-|Source|Effect on Rp/R*|
+|Source|Effect on Rp/R★|
 |---|---|
 |Noise on the depth alone (standard derivation/sqrt(N), 69 points)|about 0.0002|
 |Limb darkening (u from 0.5 to 0.7, analytic correction)|about ±0.002|
 |Full fit, including correlations between parameters|±0.0013|
 
 When the analytic correction and u fixed by hand:
-|u|Rp/R*|
+|u|Rp/R★|
 |---|---|
 |0.5|0.0935|
 |0.6|0.0917|
 |0.7|0.0897|
 
-The limb darkening term is about ten times larger than the noise term, so the result is limited by the model assumptions, not by the quality of the data. This is why u is fitted together with the other partecipants. The fit uncertainty (0.0013) is larger than the noise alone (0.0002) because the parameters are correlated: the model can trade a change in Rp/R* against changes in a/R*, b and u.
+The limb darkening term is about ten times larger than the noise term, so the result is limited by the model assumptions, not by the quality of the data. This is why u is fitted together with the other partecipants. The fit uncertainty (0.0013) is larger than the noise alone (0.0002) because the parameters are correlated: the model can trade a change in Rp/R★ against changes in a/R★, b and u.
 The reference valud (0.093) is not used to tune any parameter: the fitted u (0.46) is simply the value the data prefer.
 
 
@@ -202,7 +202,7 @@ Standard deviation of the residuald (data minus model) as the model was improved
 
 |Model|In transit|Out of transit|
 |---|---|---|
-|Parameters set by hand (Rp/R*0.0917, a/R*7.17, b=0, U=0.6)|1.0e-3|1.6e-4|
+|Parameters set by hand (Rp/R★0.0917, a/R★7.17, b=0, U=0.6)|1.0e-3|1.6e-4|
 |+transit centre shifted by 0.002 d|8.4e-4|1.6e-4|
 |+30-minute exposure supersampling|7.1e-4|1.6e-4|
 |+refined period|6.3e-4|1.6e-4|
@@ -234,7 +234,7 @@ Folded light curve (top) with the fitted model in red, and residuals (bottom).
 ## Limitations
 - A single quarter of data (about 25 transits, with a few orbital cycles falling in data gaps).
 - Linear limb darkening only. A quadratic law is more realistic and may reduce residuals on the transit walls.
-- The impact parameter is poorly constrained and correlated with a/R*, u and Rp/R*. The quoted uncertainty on Rp/R* includes these correlations through the fit covariance, which assumes the fit is close to linear around the minimum. A sampling method (MCMC) would test this.
+- The impact parameter is poorly constrained and correlated with a/R★, u and Rp/R★. The quoted uncertainty on Rp/R★ includes these correlations through the fit covariance, which assumes the fit is close to linear around the minimum. A sampling method (MCMC) would test this.
 - The Period has no error bar, since it comes from the BLS peak.
 - No detrending was applied: the small ramp after 231 is excluded from the fit with a indow cut, not modelled.
 - Circular orbit assumed. The derived stellar density depends on this assumption.
