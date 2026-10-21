@@ -38,7 +38,7 @@ flowchart LR
 ```
 δ = ΔF / F ≈ (Rp / R★)²
 ```
-**Limb darkening.**The stellar disc is brighter at the centre than at the edge. With a linear law the intensity is l(mu)=1-u(1-mu), where mu is the cosine of the angle from the disc centre. The mean intensity over the disc is 1-u/3. A planet crossing near the centre blocks a region brighter than the average, so the plain formula above overestimates the radius ratio. For a central transit a better first estimate is:
+**Limb darkening.** The stellar disc is brighter at the centre than at the edge. With a linear law the intensity is l(mu)=1-u(1-mu), where mu is the cosine of the angle from the disc centre. The mean intensity over the disc is 1-u/3. A planet crossing near the centre blocks a region brighter than the average, so the plain formula above overestimates the radius ratio. For a central transit a better first estimate is:
 ```
 Rp / R★ ≈ √( δ · (1 − u/3) )
 ```
